@@ -1,10 +1,54 @@
-
+<!DOCTYPE html>
 <html>
-  <header><title>Lotto Buy-In Form</title></header>
+<head>
+<title>Table Query Wrapper Example</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="tablequerywrapper.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages' : ['table']});
+    google.charts.setOnLoadCallback(init);
+
+    var dataSourceUrl = 'https://docs.google.com/spreadsheets/d/1lrhtdcPHTk7HYX5v9lLr77U8qVoVBQ3vTTFyeC8fEo4';
+    var query, options, container;
+
+    function init() {
+      query = new google.visualization.Query(dataSourceUrl);
+      container = document.getElementById("table");
+      options = {'pageSize': 5};
+      sendAndDraw();
+    }
+
+    function sendAndDraw() {
+      query.abort();
+      var tableQueryWrapper = new TableQueryWrapper(query, container, options);
+      tableQueryWrapper.sendAndDraw();
+    }
+
+
+    function setOption(prop, value) {
+      options[prop] = value;
+      sendAndDraw();
+    }
+
+  </script>
+</head>
 <body>
-  <div class="cognito">
-<script src="https://services.cognitoforms.com/s/r3seJl8-nUCGrMY4J2O40A"></script>
-<script>Cognito.load("forms", { id: "1" });</script>
-</div>
+<p>This example uses the following spreadsheet: <br />
+  <a href="https://docs.google.com/spreadsheets/d/1lrhtdcPHTk7HYX5v9lLr77U8qVoVBQ3vTTFyeC8fEo4">
+    https://docs.google.com/spreadsheets/d/1lrhtdcPHTk7HYX5v9lLr77U8qVoVBQ3vTTFyeC8fEo4
+  </a>
+</p>
+<form action="">
+  Number of rows to show:
+  <select onChange="setOption('pageSize', parseInt(this.value, 10))">
+    <option value="0">0</option>
+    <option value="3">3</option>
+    <option selected=selected value="5">5</option>
+    <option value="8">8</option>
+    <option value="-1">-1</option>
+  </select>
+</form>
+<br />
+<div id="table"></div>
 </body>
 </html>
