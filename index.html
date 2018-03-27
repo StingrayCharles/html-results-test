@@ -1,40 +1,7 @@
 
 <html>
-<head>
-<title>Table Query Wrapper Example</title>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="tablequerywrapper.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {'packages' : ['table']});
-    google.charts.setOnLoadCallback(init);
-
-    var dataSourceUrl = 'https://docs.google.com/spreadsheets/d/1lrhtdcPHTk7HYX5v9lLr77U8qVoVBQ3vTTFyeC8fEo4';
-    var query, options, container;
-
-    function init() {
-      query = new google.visualization.Query(dataSourceUrl);
-      container = document.getElementById("table");
-      options = {'pageSize': 5};
-      sendAndDraw();
-    }
-
-    function sendAndDraw() {
-      query.abort();
-      var tableQueryWrapper = new TableQueryWrapper(query, container, options);
-      tableQueryWrapper.sendAndDraw();
-    }
-
-
-    function setOption(prop, value) {
-      options[prop] = value;
-      sendAndDraw();
-    }
-
-  </script>
-</head>
+  <header><title>Lotto Buy-In Form</title></header>
 <body>
-
-<br />
-<div id="table"></div>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8CgHucVVU7T-R9KJ8uJvb5CNKg0_eV8ZA3A6l3_Yc71f26lsErDh-CJUd4Fk3tR9zdl9z6Vj52cud/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
 </body>
 </html>
